@@ -1,0 +1,40 @@
+## Multmatrix
+
+## compile multmatrix
+cmake .  
+make 
+
+## create the multmatrix image (Dockerfile)
+sudo docker build .
+
+## create a tag for the image
+sudo docker tag (id-build) sashvazquez/multmatrix:1.0
+
+sudo docker images
+
+## push the tag to the docker repository
+sudo docker push sashvazquez/multmatrix:1.0
+
+## create the deployments
+kubectl apply -f multmatrix-deployment.yaml 
+
+kubectl get deployments
+kubectl get pods
+
+## create the service (entrypoint)
+kubectl apply -f multmatrix-service.yaml 
+kubectl get services
+
+./client (from the master)
+
+## connect to the pods 
+kubectl exec -ti multmatrix-859c58c969-dqv67 -- /bin/bash
+kubectl exec -ti multmatrix-859c58c969-jwbb2 -- /bin/bash
+kubectl exec -ti multmatrix-859c58c969-vltz7 -- /bin/bash
+
+to see the server running --> top
+to see the pod information --> kubectl describe pods <id-pod>
+
+----------------------------------------------------------
+Ip: 172.31.44.205
+Port: 31082 

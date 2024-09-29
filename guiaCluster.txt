@@ -1,0 +1,21 @@
+## Cluster Schema
+    machine 1 (master/control-plane)
+    machine 2 (worker --> multmatrix)
+    machine 3 (worker --> filemanager) --> hostpath
+
+## Create a new token from the master node
+kubeadm token create --print-join-command
+
+## Add node to the cluster:
+    1. install kubernetes (kub_install.sh)
+    2. remove the control-plane role from the node (reset the node configuration) --> sudo kubeadm reset
+    3. join the new node with the master node --> sudo kubeadm join <master-node-token>
+
+## labels (from the master node)
+kubectl label nodes <node-name> NAME = <label-value>
+
+## see node labels
+kubectl get nodes --show-labels
+
+## see cluster nodes
+kubectl get nodes

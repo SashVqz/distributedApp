@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: filemanager
+ namespace: default
+spec:
+ replicas: 2
+ selector:
+  matchLabels:
+   app: filemanager
+ template:
+  metadata:
+   labels:
+    app: filemanager
+  spec:
+   containers:
+   - name: filemanager
+     image: docker.io/sashvazquez/filemanager:1.0
+     volumeMounts:
+     - mountPath: /dirprueba
+       name: dirprueba
+   nodeSelector: 
+     NAME: filemanager
+   volumes:
+   - name: dirprueba
+     hostPath:
+      path: /home/ubuntu/PR1SISDIS_Alvaro_Vazquez/fileManager/source/dirprueba
+      type: Directory
+     

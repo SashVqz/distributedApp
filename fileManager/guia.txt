@@ -1,0 +1,39 @@
+## Filemanager
+
+## compile filemanager
+cmake .  
+make 
+
+## create the filemanager image (Dockerfile)
+sudo docker build .
+
+## create a tag for the image
+sudo docker tag (id-build) sashvazquez/filemanager:1.0
+
+sudo docker images
+
+## push the tag to the docker repository
+sudo docker push sashvazquez/filemanager:1.0
+
+## create the deployments
+kubectl apply -f filemanager-deployment.yaml 
+
+kubectl get deployments
+kubectl get pods
+
+## create the service (entrypoint)
+kubectl apply -f filemanager-service.yaml 
+kubectl get services
+
+./client (from the master)
+
+## connect to the pod 
+kubectl exec -ti filemanager-799b9ffb8-9tkjv -- /bin/bash
+
+to see the server running --> top
+to see the pod information --> kubectl describe pods <id-pod>
+
+----------------------------------------------------------
+pod directory is the same as dirprueba of machine 3
+
+Ip: 172.31.45.139 machine 3 port: 31083

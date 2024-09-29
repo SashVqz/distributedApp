@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: multmatrix
+ namespace: default
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   app: multmatrix
+ template:
+  metadata:
+   labels:
+    app: multmatrix
+  spec:
+   containers:
+   - name: multmatrix
+     image: docker.io/sashvazquez/multmatrix:1.0
+   nodeSelector:
+     NAME: multmatrix
